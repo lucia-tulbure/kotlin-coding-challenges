@@ -4,7 +4,10 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun longestWord(str: String): String {
-    TODO("not implemented")
+    //eliminate unknown characters
+    val formattedString= str.map{if(it.isLetter()) it else " "}.joinToString("")
+
+    return formattedString.split(" ").maxByOrNull { it.length }.toString()
 }
 
 private class Test {

@@ -4,7 +4,10 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun addUpTo(n: Int): Int {
-    TODO("not implemented")
+    var sum = 0
+    for (i in 1..n)
+        sum += i
+    return sum
 }
 
 private class Test {

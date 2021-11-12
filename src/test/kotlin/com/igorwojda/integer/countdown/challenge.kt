@@ -4,7 +4,11 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun countDown(n: Int): List<Int> {
-    TODO("not implemented")
+    val myList = mutableListOf<Int>()
+    for (nr in n downTo 0) {
+        myList.add(nr)
+    }
+    return myList
 }
 
 private class Test {

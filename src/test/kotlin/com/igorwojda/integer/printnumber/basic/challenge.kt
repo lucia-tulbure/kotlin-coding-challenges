@@ -4,8 +4,11 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun printNumber(n: Int): List<Int> {
-    TODO("not implemented")
-}
+    val myList = mutableListOf<Int>()
+    for (nr in n downTo 1) {
+        myList.add(nr)
+    }
+    return myList}
 
 class RecursivePrintNumber {
     @Test

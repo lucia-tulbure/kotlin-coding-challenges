@@ -4,7 +4,12 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun isTolerantPalindrome(str: String, characterRemoved: Boolean = false): Boolean {
-    TODO("not implemented")
+    if (str == str.reversed()) return true
+    //remove one character at a time to see if the remaining string is palindrom
+    (str.indices).forEach {
+        if (str.removeRange(it, it + 1) == str.removeRange(it, it + 1).reversed()) return true
+    }
+    return false
 }
 
 private class Test {

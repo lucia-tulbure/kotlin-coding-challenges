@@ -4,7 +4,29 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun encodeCaesarCipher(str: String, shift: Int): String {
-    TODO("not implemented")
+
+    val aLetterAsci = 'a'.toInt()
+    val zLetterAsci = 'z'.toInt()
+    print(zLetterAsci)
+    val alphabetLength = zLetterAsci - aLetterAsci + 1
+    val reducedShift = shift % alphabetLength
+    var encrypted = ""
+
+    str.forEach {
+        //add shift to letter
+        val encryptedLetterAscii = (it + reducedShift).toInt()
+
+
+        encrypted += if (encryptedLetterAscii <= zLetterAsci) {
+
+            encryptedLetterAscii
+        } else {
+            //if shifted char is bigger than 'z' than start encryption from 'a' again
+            aLetterAsci + (encryptedLetterAscii - zLetterAsci) - 1
+        }.toChar()
+
+    }
+    return encrypted
 }
 
 private class Test {

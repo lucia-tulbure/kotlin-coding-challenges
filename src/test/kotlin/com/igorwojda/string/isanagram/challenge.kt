@@ -4,7 +4,12 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun isAnagram(str1: String, str2: String): Boolean {
-    TODO("not implemented")
+    //eliminate unknown characters
+    val formattedString1 = str1.toLowerCase().map { if (it.isLetter()) it else "" }.joinToString("")
+    val formattedString2 = str2.toLowerCase().map { if (it.isLetter()) it else "" }.joinToString("")
+    //compare letters frequencies
+    return formattedString1.groupingBy { it }.eachCount() == formattedString2.groupingBy { it }.eachCount()
+
 }
 
 private class Test {

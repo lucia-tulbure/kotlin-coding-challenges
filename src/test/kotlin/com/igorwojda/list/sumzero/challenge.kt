@@ -4,7 +4,21 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun sumZero(list: List<Int>): Pair<Int, Int>? {
-    TODO("not implemented")
+    if (list.isEmpty()) {
+        return null
+    }
+    var pointerFromBeginning = 0
+    var pointerFromEnd = list.size - 1
+    var sumPair: Int
+    while (pointerFromBeginning != pointerFromEnd) {
+        sumPair = list[pointerFromBeginning] + list[pointerFromEnd]
+        when {
+            sumPair == 0 -> return Pair(list[pointerFromBeginning], list[pointerFromEnd])
+            sumPair < 0 -> pointerFromBeginning++
+            sumPair > 0 -> pointerFromEnd--
+        }
+    }
+    return null
 }
 
 private class Test {

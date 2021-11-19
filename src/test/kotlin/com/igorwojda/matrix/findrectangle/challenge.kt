@@ -4,7 +4,25 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun findRectangle(image: List<List<Int>>): List<Int>? {
-    TODO("not implemented")
+    val coordinates = mutableListOf<Int>()
+    val zerosRowPositions = mutableListOf<Int>()
+    val zerosColPositions = mutableListOf<Int>()
+
+    for (row in image.indices) {
+        for (col in 0 until image[0].size) {
+            if (image[row][col] == 0) {
+                zerosColPositions.add(col)
+                zerosRowPositions.add(row)
+            }
+        }
+    }
+
+    coordinates.add(zerosRowPositions.minOf { it })
+    coordinates.add(zerosColPositions.minOf { it })
+    coordinates.add(zerosRowPositions.maxOf { it })
+    coordinates.add(zerosColPositions.maxOf { it })
+
+    return coordinates
 }
 
 private class Test {

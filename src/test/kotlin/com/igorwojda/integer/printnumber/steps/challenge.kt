@@ -3,10 +3,14 @@ package com.igorwojda.integer.printnumber.steps
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
+private fun printNumberByCreatingAnotherList(n: Int, step: Int = 1): List<Int> {
+    val mutableList = mutableListOf<Int>()
+    for (i in n downTo 1 step step) mutableList.add(i)
+    return mutableList
+}
+
 private fun printNumber(n: Int, step: Int = 1): List<Int> {
-    val listToReturn = mutableListOf<Int>()
-    for (i in n downTo 1 step step) listToReturn.add(i)
-    return listToReturn
+    return (n downTo 1 step step).toList()
 }
 
 class RecursivePrintNumberWithSteps {

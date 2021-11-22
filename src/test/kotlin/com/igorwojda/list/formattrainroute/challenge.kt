@@ -9,9 +9,6 @@ private fun formatTrainRoute(stations: List<String>): String {
         return message + stations[0]
     }
     val formattedString = stations.dropLast(1).joinToString(", ") { it }
-    print(formattedString)
-    print(stations.last())
-
     return message + formattedString + " and ${stations.last()}"
 }
 

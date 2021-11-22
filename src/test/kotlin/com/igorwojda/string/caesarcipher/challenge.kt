@@ -7,26 +7,18 @@ private fun encodeCaesarCipher(str: String, shift: Int): String {
 
     val aLetterAsci = 'a'.toInt()
     val zLetterAsci = 'z'.toInt()
-    print(zLetterAsci)
     val alphabetLength = zLetterAsci - aLetterAsci + 1
     val reducedShift = shift % alphabetLength
-    var encrypted = ""
-
-    str.forEach {
-        //add shift to letter
+    return str.map {
         val encryptedLetterAscii = (it + reducedShift).toInt()
-
-
-        encrypted += if (encryptedLetterAscii <= zLetterAsci) {
+        if (encryptedLetterAscii <= zLetterAsci) {
 
             encryptedLetterAscii
         } else {
             //if shifted char is bigger than 'z' than start encryption from 'a' again
             aLetterAsci + (encryptedLetterAscii - zLetterAsci) - 1
         }.toChar()
-
-    }
-    return encrypted
+    }.joinToString("")
 }
 
 private class Test {

@@ -3,12 +3,16 @@ package com.igorwojda.list.product
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private fun product(list: List<Int>): Int {
+private fun productRecursive(list: List<Int>): Int {
     return if (list.size == 1) {
         list.first()
     } else {
         list.first() * product(list.drop(1))
     }
+}
+
+private fun product(list: List<Int>): Int {
+    return list.fold(1) { product, element -> product * element }
 }
 
 private class Test {

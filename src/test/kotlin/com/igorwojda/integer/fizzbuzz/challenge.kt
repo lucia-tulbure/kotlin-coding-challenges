@@ -3,11 +3,11 @@ package com.igorwojda.integer.fizzbuzz
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private fun fizzBuzz(n: Int): List<String> {
-    val numberList = mutableListOf<String>()
+private fun fizzBuzzByCreatingList(n: Int): List<String> {
+    val mutableList = mutableListOf<String>()
     (1..n).forEach {
 
-        numberList.add(
+        mutableList.add(
             when {
                 it % 3 == 0 && it % 5 == 0 -> "FizzBuzz"
                 it % 3 == 0 -> "Fizz"
@@ -16,7 +16,18 @@ private fun fizzBuzz(n: Int): List<String> {
             }.toString()
         )
     }
-    return numberList
+    return mutableList
+}
+
+private fun fizzBuzz(n: Int): List<String> {
+    return (1..n).map {
+        when {
+            it % 3 == 0 && it % 5 == 0 -> "FizzBuzz"
+            it % 3 == 0 -> "Fizz"
+            it % 5 == 0 -> "Buzz"
+            else -> it
+        }.toString()
+    }
 }
 
 private class Test {

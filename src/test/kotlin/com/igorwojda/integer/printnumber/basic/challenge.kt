@@ -3,12 +3,17 @@ package com.igorwojda.integer.printnumber.basic
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private fun printNumber(n: Int): List<Int> {
-    val myList = mutableListOf<Int>()
+private fun printNumberByCreatingAnotherList(n: Int): List<Int> {
+    val mutableList = mutableListOf<Int>()
     for (nr in n downTo 1) {
-        myList.add(nr)
+        mutableList.add(nr)
     }
-    return myList}
+    return mutableList
+}
+
+private fun printNumber(n: Int): List<Int> {
+    return (n downTo 1).toList()
+}
 
 class RecursivePrintNumber {
     @Test

@@ -3,12 +3,23 @@ package com.igorwojda.integer.factorial
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private fun factorial(n: Int): Int {
+private fun factorialIterative(n: Int): Int {
     var factorial = 1
     for (i in 1..n) {
         factorial *= i
     }
     return factorial
+}
+
+private fun factorial(n: Int): Int {
+    if (n == 0) {
+        return 1
+    }
+    return n * factorial(n - 1)
+}
+
+private fun factorialWithFoldingOperation(n: Int): Int {
+    return (0..n).fold(1) { sum, element -> sum * element }
 }
 
 class RecursiveFactorial {

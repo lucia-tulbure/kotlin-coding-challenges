@@ -11,8 +11,16 @@ private fun productRecursive(list: List<Int>): Int {
     }
 }
 
-private fun product(list: List<Int>): Int {
+private fun productWithFoldOperation(list: List<Int>): Int {
     return list.fold(1) { product, element -> product * element }
+}
+
+private fun productWithReduceOperation(list: List<Int>): Int {
+    return list.reduce { product, element -> product * element }
+}
+
+private fun product(list: List<Int>): Int {
+    return list.reduce(Int::times)
 }
 
 private class Test {

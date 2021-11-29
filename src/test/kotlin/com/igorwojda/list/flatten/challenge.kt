@@ -4,7 +4,15 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 fun flatten(list: List<*>): List<*> {
-    TODO("not implemented")
+    val flattenedList = mutableListOf<Any?>()
+    list.forEach {
+        if (it is List<*>) {
+            flattenedList.addAll(flatten(it))
+        } else {
+            flattenedList.add(it)
+        }
+    }
+    return flattenedList
 }
 
 private class Test {

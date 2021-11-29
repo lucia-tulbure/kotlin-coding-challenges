@@ -4,7 +4,20 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun selectionSort(list: List<Int>): List<Number> {
-    return list
+    val myMutableList = list.toMutableList()
+    for (index in list.indices) {
+        if (myMutableList.subList(index, list.size).isNotEmpty()) {
+            //store the index of the minimum value from the unsorted sublist
+            val minValueFromSublistIndex =
+                myMutableList.lastIndexOf(myMutableList.subList(index, list.size).minOf { it })
+            //add the minimum value found at the beginning of list
+            myMutableList[minValueFromSublistIndex] =
+                myMutableList[index].also { myMutableList[index] = myMutableList[minValueFromSublistIndex] }
+        } else {
+            break
+        }
+    }
+    return myMutableList
 }
 
 private class Test {

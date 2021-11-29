@@ -3,22 +3,72 @@ package com.igorwojda.queue.basic
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private class Queue<E> {
+private class QueueWithList<E> {
     var size = 0
         private set
+    private val mutableList = mutableListOf<E>()
+
 
     fun add(element: E) {
-        TODO("not implemented")
+        mutableList.add(element)
+        size++
     }
 
-    fun remove(): E = TODO("not implemented")
+    fun remove(): E? = if (mutableList.isNotEmpty()) {
+        size--
+        mutableList.removeAt(0)
 
-    fun peek(): E = TODO("not implemented")
+    } else {
+        null
+    }
+
+    fun peek(): E? = if (mutableList.isNotEmpty()) {
+        mutableList[0]
+    } else {
+        null
+    }
 
     fun isEmpty(): Boolean {
-        TODO("not implemented")
+        return mutableList.isEmpty()
     }
 }
+
+
+private class Queue<E> {
+    var size = 0
+    var firstElement: Node<E>? = null
+    var lastElement: Node<E>? = null
+
+
+    fun add(element: E) {
+        size++
+        val newNode = Node(element)
+        if (firstElement == null) {
+            firstElement = newNode
+        } else {
+            lastElement?.next = newNode
+        }
+        lastElement = newNode
+    }
+
+    fun remove(): E? = if (firstElement != null) {
+        val nodeRemoved = firstElement
+        size--
+        firstElement = nodeRemoved?.next
+        nodeRemoved?.value
+    } else {
+        null
+    }
+
+    fun peek(): E? = firstElement?.value
+
+    fun isEmpty(): Boolean {
+        return firstElement == null
+    }
+
+}
+
+private data class Node<E>(var value: E, var next: Node<E>? = null)
 
 private class Test {
     @Test

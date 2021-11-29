@@ -4,7 +4,23 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun binarySearch(list: List<Char>, element: Char): Int {
-    TODO("not implemented")
+    var middle = list.size / 2
+    var left = 0
+    var right = list.size - 1
+    while (left < right) {
+        when {
+            list[middle] == element -> return middle
+            list[middle] > element -> {
+                right = middle
+                middle = (left + right) / 2
+            }
+            list[middle] < element -> {
+                left = middle
+                middle = (left + right) / 2
+            }
+        }
+    }
+    return -1
 }
 
 private class Test {

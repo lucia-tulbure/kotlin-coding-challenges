@@ -3,25 +3,67 @@ package com.igorwojda.stack.basic
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
-private class Stack<E> {
+private class StackUsingMutableList<E> {
     var size = 0
+    val mutableList = mutableListOf<E>()
 
     fun add(element: E) {
-        TODO("not implemented")
+        mutableList.add(element)
+        size++
     }
 
-    fun remove(): E? {
-        TODO("not implemented")
-    }
+    fun remove(): E? =
+        if (mutableList.isNotEmpty()) {
+            size--
+            mutableList.removeAt(size)
+        } else {
+            null
+        }
 
-    fun peek(): E? {
-        TODO("not implemented")
+
+    fun peek(): E? = if (size == 0) {
+        null
+    } else {
+        mutableList.last()
     }
 
     fun isEmpty(): Boolean {
-        TODO("not implemented")
+        return mutableList.isEmpty()
     }
 }
+
+private class Stack<E> {
+    var size = 0
+    var first: Node<E>? = null
+
+    fun add(element: E) {
+        val newNode = Node(element)
+        if (size == 0) {
+            first = newNode
+        } else {
+            //add element at beginning of linked list
+            newNode.next = first
+            first = newNode
+        }
+        size++
+    }
+
+    fun remove(): E? = if (size != 0) {
+        val node = first
+        size--
+        first = first?.next
+        node?.value
+    } else {
+        null
+    }
+
+    fun peek(): E? = first?.value
+
+    fun isEmpty(): Boolean {
+        return size == 0
+    }
+}
+private data class Node<E>(var value: E?, var next: Node<E>? = null)
 
 private class Test {
     @Test

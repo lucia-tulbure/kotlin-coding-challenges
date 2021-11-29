@@ -4,9 +4,18 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 private fun surroundedLetter(str: String): Boolean {
-    TODO("not implemented")
+    if (str[0] != '+' || str[str.length - 1] != '+') {
+        return false
+    }
+    (1..str.length - 2).forEach {
+        if (str[it] != '+') {
+            if (str[it - 1] != '+' || str[it + 1] != '+') {
+                return false
+            }
+        }
+    }
+    return true
 }
-
 private class Test {
     @Test
     fun `"a" return "false"`() {

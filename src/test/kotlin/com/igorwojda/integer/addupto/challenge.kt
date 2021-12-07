@@ -2,9 +2,22 @@ package com.igorwojda.integer.addupto
 
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
+// solution 1
+private fun addUpToIterativeSolution(n: Int): Int {
+    var sum = 0
+    for (i in 1..n)
+        sum += i
+    return sum
+}
 
+// solution 2
 private fun addUpTo(n: Int): Int {
-    TODO("not implemented")
+   return n*(n+1)/2
+}
+
+//solution 3
+private fun addUpToAggregateOperations(n: Int): Int {
+   return (1..n).toList().sum()
 }
 
 private class Test {

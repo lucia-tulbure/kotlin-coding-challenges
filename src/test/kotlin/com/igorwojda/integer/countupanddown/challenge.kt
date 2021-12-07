@@ -3,8 +3,19 @@ package com.igorwojda.integer.countupanddown
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
+private fun countUpAndDownByCreatingOtherList(n: Int): List<Int> {
+    val myMutableList = mutableListOf<Int>()
+    for (nr in 0 until n) {
+        myMutableList.add(nr)
+    }
+    for (nr in n downTo 0) {
+        myMutableList.add(nr)
+    }
+    return myMutableList
+}
+
 private fun countUpAndDown(n: Int): List<Int> {
-    TODO("not implemented")
+    return (0 until n).toList() + (n downTo 0).toList()
 }
 
 private class Test {

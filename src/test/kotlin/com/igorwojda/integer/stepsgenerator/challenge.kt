@@ -4,7 +4,16 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 fun generateSteps(n: Int): List<String> {
-    TODO("not implemented")
+    return (1..n).map { rowIndex ->
+        (1..n).joinToString("") { columnIndex ->
+            if (rowIndex >= columnIndex) {
+                "#"
+            } else {
+                " "
+            }
+
+        }
+    }
 }
 
 private class Test {
